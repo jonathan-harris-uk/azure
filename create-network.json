@@ -12,12 +12,11 @@
    },
   "variables": {
     "addressPrefix": "10.0.0.0/16",
-    "subnetName": "Subnet",
+    "subnetName": "snet-lan",
     "subnetPrefix": "10.0.0.0/24",
-    "publicIPAddressName": "myPublicIP",
-    "virtualNetworkName": "MyVNET",
+    "virtualNetworkName": "vnet1",
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
-    "networkSecurityGroupName": "default-NSG"
+    "networkSecurityGroupName": "nsg-snet-land"
   },
   "resources": [
     {
