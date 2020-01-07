@@ -39,12 +39,12 @@
         "description": "Size of the virtual machine."
       }
     },
-	"vmName": {
+    "vmName": {
       "type": "string",
        "metadata": {
         "description": "Name of the virtual machine."
       }
-	}  
+    }  
  },
   "variables": {
     "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'sawinvm')]",
