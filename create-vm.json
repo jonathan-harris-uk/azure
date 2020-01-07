@@ -47,7 +47,7 @@
     }  
  },
   "variables": {
-    "storageAccountName": "[concat('sa-', parameters('vmName'))]",
+    "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'sawinvm')]",
     "nicName": "[concat('nic-', parameters('vmName'))]",
     "addressPrefix": "10.0.0.0/16",
     "subnetName": "snet-lan",
