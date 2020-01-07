@@ -83,7 +83,7 @@
     {
       "type": "Microsoft.Network/networkInterfaces",
       "apiVersion": "2018-11-01",
-      "name": "[variables('vmName')nic",
+      "name": "[variables('vmName')nic]",
       "location": "[parameters('location')]",
       "dependsOn": [
         "[resourceId('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'))]"
