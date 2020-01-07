@@ -47,12 +47,12 @@
     }  
  },
   "variables": {
-    "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'sawinvm')]",
-    "nicName": "[concat(parameters('vmName'), 'vmNic')]",
+    "storageAccountName": "[concat('sa-', parameters('vmName'))]",
+    "nicName": "[concat('nic-', parameters('vmName'))]",
     "addressPrefix": "10.0.0.0/16",
     "subnetName": "snet-lan",
     "subnetPrefix": "10.0.0.0/24",
-    "publicIPAddressName": "[concat(parameters('vmName'), 'pip')]",
+    "publicIPAddressName": "[concat('pip', parameters('vmName'))]",
     "virtualNetworkName": "vnet1",
     "subnetRef": "[resourceId('3815f71a-867a-45ae-902a-472c5c0a4dde', 'rg-networks', 'Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]"
   },
