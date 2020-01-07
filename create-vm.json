@@ -97,7 +97,6 @@
             "properties": {
               "addressPrefix": "[variables('subnetPrefix')]"
               }
-            }
           }
         ]
       }
