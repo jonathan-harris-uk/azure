@@ -1,12 +1,12 @@
 ﻿
 $resourceGroupName = Read-Host -Prompt "Enter the Resource Group name"
 $location = Read-Host -Prompt "Enter the location (i.e. centralus)"
+$vmName = Read-Host -Prompt "Enter the VM Name"
+$dnsLabelPrefix = Read-Host -Prompt "Enter an unique DNS name for the public IP"
+$vmSize = Read-Host -Prompt "Enter the VM Size"
 $adminUsername = Read-Host -Prompt "Enter the administrator username"
 $adminPassword = Read-Host -Prompt "Enter the administrator password" -AsSecureString
-$dnsLabelPrefix = Read-Host -Prompt "Enter an unique DNS name for the public IP"
 $windowsOSVersion = Read-Host -Prompt "Enter the Windows version for the VM"
-$vmSize = Read-Host -Prompt "Enter the VM Size"
-$vmName = Read-Host -Prompt "Enter the VM Name"
 
 New-AzResourceGroup -Name $resourceGroupName -Location "$location"
 New-AzResourceGroupDeployment `
@@ -17,6 +17,6 @@ New-AzResourceGroupDeployment `
     -dnsLabelPrefix $dnsLabelPrefix `
     -windowsOSVersion $windowsOSVersion  `
     -vmSize $vmSize  `
-	-vmName $vmName
+    -vmName $vmName
 
  (Get-AzVm -ResourceGroupName $resourceGroupName).name
