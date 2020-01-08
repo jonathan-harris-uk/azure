@@ -8,5 +8,6 @@ New-AzResourceGroup -Name $resourceGroupName -Location "$location"
 New-AzResourceGroupDeployment `
     -ResourceGroupName $resourceGroupName `
     -TemplateUri "https://raw.githubusercontent.com/jonathan-harris-uk/azure/network/create-network.json"
-
+    -publicIP $publicIP
+    
  (Get-AzVm -ResourceGroupName $resourceGroupName).name
