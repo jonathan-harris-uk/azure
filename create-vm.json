@@ -53,7 +53,7 @@
     }  
  },
   "variables": {
-    "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'sawinvm')]",
+    "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'sa')]",
     "nicName": "[concat(parameters('vmName'), 'nic')]",
     "subnetName": "snet-lan",
     "publicIPAddressName": "[concat(parameters('vmName'), 'pip')]",
