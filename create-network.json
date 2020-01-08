@@ -9,6 +9,14 @@
         "description": "Location for all resources."
       }
     },
+    "publicIP": {
+      "type": "int",
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": {
+        "description": "Customer's Public IP Address for NSG rule."
+      }
+    }
+   },
   "variables": {
     "addressPrefix": "10.0.0.0/16",
     "subnetName": "snet-lan",
