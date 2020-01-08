@@ -45,6 +45,12 @@
         "description": "Name of the virtual machine."
       }
     }  
+    "subscriptionId": {
+      "type": "string",
+       "metadata": {
+        "description": "Azure Subcription Id from Get-AzSubscription command."
+      }
+    }  
  },
   "variables": {
     "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'sawinvm')]",
