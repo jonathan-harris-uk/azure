@@ -29,13 +29,25 @@
     },
     "windowsOSVersion": {
       "type": "string",
+      "defaultValue": "2019-Datacenter",
+       "allowedValues": [
+        "2012-R2-Datacenter",
+        "2016-Datacenter",
+        "2019-Datacenter"
+      ],
       "metadata": {
         "description": "The Windows version for the VM. This will pick a fully patched image of this given Windows version."
       }
     },
     "vmSize": {
       "type": "string",
-       "metadata": {
+      "defaultValue": "Standard_B2s",
+       "allowedValues": [
+        "Standard_B2s",
+        "Standard_D2s_v3",
+        "Standard_D4s_v3"
+      ],
+      "metadata": {
         "description": "Size of the virtual machine."
       }
     },
