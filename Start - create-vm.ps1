@@ -7,6 +7,7 @@ $vmSize = Read-Host -Prompt "Enter the VM Size"
 $adminUsername = Read-Host -Prompt "Enter the administrator username"
 $adminPassword = Read-Host -Prompt "Enter the administrator password" -AsSecureString
 $windowsOSVersion = Read-Host -Prompt "Enter the Windows version for the VM"
+$subscriptionId = Read-Host -Prompt "Enter Azure subscription ID, from Get-AzSubscription command"
 
 New-AzResourceGroup -Name $resourceGroupName -Location "$location"
 New-AzResourceGroupDeployment `
@@ -17,6 +18,7 @@ New-AzResourceGroupDeployment `
     -dnsLabelPrefix $dnsLabelPrefix `
     -windowsOSVersion $windowsOSVersion  `
     -vmSize $vmSize  `
-    -vmName $vmName
+    -vmName $vmName  `
+    -subscriptionId $subscriptionId
 
  (Get-AzVm -ResourceGroupName $resourceGroupName).name
