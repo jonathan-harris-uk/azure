@@ -110,16 +110,16 @@
       "location": "[parameters('location')]",
       "properties": {
         "backupManagementType": "AzureIaasVM",
-        "instantRpRetentionRangeInDays": 5,
+        "instantRpRetentionRangeInDays": 1,
         "schedulePolicy": {
-          "scheduleRunFrequency": "Weekly",
+          "scheduleRunFrequency": "Daily",
           "scheduleRunDays": "[parameters('scheduleRunDays')]",
           "scheduleRunTimes": "[parameters('scheduleRunTimes')]",
           "schedulePolicyType": "SimpleSchedulePolicy"
         },
         "retentionPolicy": {
-          "dailySchedule": null,
-          "weeklySchedule": {
+          "weeklySchedule": null,
+          "dailySchedule": {
             "daysOfTheWeek": "[parameters('scheduleRunDays')]",
             "retentionTimes": "[parameters('scheduleRunTimes')]",
             "retentionDuration": {
