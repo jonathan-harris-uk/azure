@@ -44,7 +44,7 @@
        "metadata": {
         "description": "Name of the virtual machine."
       }
-    }  
+    },  
     "subscriptionId": {
       "type": "string",
        "metadata": {
