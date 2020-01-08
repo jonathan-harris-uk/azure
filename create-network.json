@@ -8,12 +8,6 @@
       "metadata": {
         "description": "Location for all resources."
       }
-    },
-    "publicIP": {
-      "type": "string",
-      "metadata": {
-        "description": "Customer's Public IP Address for NSG rule."
-      }
     }
    },
   "variables": {
@@ -42,7 +36,7 @@
               "destinationPortRange":  "3389",
               "protocol":  "Tcp",
               "sourcePortRange":  "*",
-              "sourceAddressPrefix":  "*",
+              "sourceAddressPrefix":  "81.3.85.85",
               "destinationAddressPrefix":  "*"
             }
           }
