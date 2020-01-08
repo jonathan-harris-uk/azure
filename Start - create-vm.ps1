@@ -1,4 +1,4 @@
-﻿
+#Set Varriables
 $resourceGroupName = Read-Host -Prompt "Enter the Resource Group name"
 $location = Read-Host -Prompt "Enter the location (i.e. centralus)"
 $vmName = Read-Host -Prompt "Enter the VM Name"
@@ -9,6 +9,7 @@ $adminPassword = Read-Host -Prompt "Enter the administrator password" -AsSecureS
 $windowsOSVersion = Read-Host -Prompt "Enter the Windows version for the VM"
 $subscriptionId = Read-Host -Prompt "Enter Azure subscription ID, from Get-AzSubscription command"
 
+#Build Resources
 New-AzResourceGroup -Name $resourceGroupName -Location "$location"
 New-AzResourceGroupDeployment `
     -ResourceGroupName $resourceGroupName `
