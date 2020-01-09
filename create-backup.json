@@ -25,7 +25,7 @@
   "variables": {
     "vaultName": "rsv2",
     "policyName": "Daily180dayRetention",
-    "scheduleRunTimes":"2017-01-26T23:30:00Z",
+    "scheduleRunTimes": "2017-01-26T23:30:00Z",
     "timeZone": "UTC",
     "instantRpRetentionRangeInDays": "2",
     "dailyRetentionDurationCount": "180",
