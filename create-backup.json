@@ -2,18 +2,6 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "scheduleRunTimes": {
-      "type": "array",
-      "metadata": {
-        "description": "Times in day when backup should be triggered. e.g. 01:00 or 13:00. Must be an array, however for IaaS VMs only one value is valid. This will be used in LTR too for daily, weekly, monthly and yearly backup."
-      }
-    },
-    "timeZone": {
-      "type": "string",
-      "metadata": {
-        "description": "Any Valid timezone, for example:UTC, Pacific Standard Time. Refer: https://msdn.microsoft.com/en-us/library/gg154758.aspx"
-      }
-    },
     "instantRpRetentionRangeInDays": {
       "type": "int",
       "defaultValue": 2,
@@ -75,6 +63,8 @@
   "variables": {
     "vaultName": "rsv2",
     "policyName": "Daily180dayRetention",
+    "scheduleRunTimes": "2017-01-26T23:30:00Z",
+    "timeZone": "UTC",
   },
   "resources": [
     {
@@ -102,12 +92,12 @@
         "schedulePolicy": {
           "scheduleRunFrequency": "Daily",
           "scheduleRunDays": null,
-          "scheduleRunTimes": "[parameters('scheduleRunTimes')]",
+          "scheduleRunTimes": "[variables('scheduleRunTimes')]",
           "schedulePolicyType": "SimpleSchedulePolicy"
         },
         "retentionPolicy": {
           "dailySchedule": {
-            "retentionTimes": "[parameters('scheduleRunTimes')]",
+            "retentionTimes": "[variables('scheduleRunTimes')]",
             "retentionDuration": {
               "count": "[parameters('dailyRetentionDurationCount')]",
               "durationType": "Days"
@@ -115,7 +105,7 @@
           },
           "weeklySchedule": {
             "daysOfTheWeek": "[parameters('daysOfTheWeek')]",
-            "retentionTimes": "[parameters('scheduleRunTimes')]",
+            "retentionTimes": "[variables('scheduleRunTimes')]",
             "retentionDuration": {
               "count": "[parameters('weeklyRetentionDurationCount')]",
               "durationType": "Weeks"
@@ -132,7 +122,7 @@
               ]
             },
             "retentionScheduleWeekly": null,
-            "retentionTimes": "[parameters('scheduleRunTimes')]",
+            "retentionTimes": "[variables('scheduleRunTimes')]",
             "retentionDuration": {
               "count": "[parameters('monthlyRetentionDurationCount')]",
               "durationType": "Months"
@@ -150,7 +140,7 @@
               ]
             },
             "retentionScheduleWeekly": null,
-            "retentionTimes": "[parameters('scheduleRunTimes')]",
+            "retentionTimes": "[variables('scheduleRunTimes')]",
             "retentionDuration": {
               "count": "[parameters('yearlyRetentionDurationCount')]",
               "durationType": "Years"
@@ -158,7 +148,7 @@
           },
           "retentionPolicyType": "LongTermRetentionPolicy"
         },
-        "timeZone": "[parameters('timeZone')]"
+        "timeZone": "[variables('timeZone')]"
       }
     }
   ]
