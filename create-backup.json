@@ -12,11 +12,11 @@
   },
    "variables": {
      "vaultName": "rsv1",
-     "policyName": "WeeklyBackupPolicy2",
+     "policyName": "Daily180dayRetention",
      "scheduleRunDays": "Sunday",
      "scheduleRunTimes": "2016-09-21T05:30:00Z",
      "timeZone": "UTC",
-     "weeklyRetentionDurationCount": "1",
+     "dailyRetentionDurationCount": "180",
      "daysOfTheWeekForMontlyRetention": "Sunday",
      "weeksOfTheMonthForMonthlyRetention": "First",
      "monthlyRetentionDurationCount": "1",
@@ -47,66 +47,20 @@
       "location": "[parameters('location')]",
       "properties": {
         "backupManagementType": "AzureIaasVM",
-        "instantRpRetentionRangeInDays": 5,
+        "instantRpRetentionRangeInDays": 1,
         "schedulePolicy": {
-          "scheduleRunFrequency": "Weekly",
-          "scheduleRunDays": "[variables('scheduleRunDays')]",
+          "scheduleRunFrequency": "Daily",
           "scheduleRunTimes": "[variables('scheduleRunTimes')]",
           "schedulePolicyType": "SimpleSchedulePolicy"
         },
         "retentionPolicy": {
           "dailySchedule": null,
-          "weeklySchedule": {
-            "daysOfTheWeek": "[variables('scheduleRunDays')]",
-            "retentionTimes": "[variables('scheduleRunTimes')]",
-            "retentionDuration": {
-              "count": "[variables('weeklyRetentionDurationCount')]",
-              "durationType": "Weeks"
-            }
+          "weeklySchedule": null,
           },
-          "monthlySchedule": {
-            "retentionScheduleFormatType": "Weekly",
-            "retentionScheduleDaily": {
-              "daysOfTheMonth": [
-                {
-                  "date": 1,
-                  "isLast": false
-                }
+          "monthlySchedule": null,
               ]
             },
-            "retentionScheduleWeekly": {
-              "daysOfTheWeek": "[variables('daysOfTheWeekForMontlyRetention')]",
-              "weeksOfTheMonth": "[variables('weeksOfTheMonthForMonthlyRetention')]"
-            },
-            "retentionTimes": "[variables('scheduleRunTimes')]",
-            "retentionDuration": {
-              "count": "[variables('monthlyRetentionDurationCount')]",
-              "durationType": "Months"
-            }
-          },
-          "yearlySchedule": {
-            "retentionScheduleFormatType": "Weekly",
-            "monthsOfYear": "[variables('monthsOfYear')]",
-            "retentionScheduleDaily": {
-              "daysOfTheMonth": [
-                {
-                  "date": 1,
-                  "isLast": false
-                }
-              ]
-            },
-            "retentionScheduleWeekly": {
-              "daysOfTheWeek": "[variables('daysOfTheWeekForYearlyRetention')]",
-              "weeksOfTheMonth": "[variables('weeksOfTheMonthForYearlyRetention')]"
-            },
-            "retentionTimes": "[variables('scheduleRunTimes')]",
-            "retentionDuration": {
-              "count": "[variables('yearlyRetentionDurationCount')]",
-              "durationType": "Years"
-            }
-          },
-          "retentionPolicyType": "LongTermRetentionPolicy"
-        },
+                   },
         "timeZone": "[variables('timeZone')]"
       }
     }
