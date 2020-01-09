@@ -11,7 +11,7 @@
     }
   },
    "variables": {
-     "vaultName": "rsv1",
+     "vaultName": "rsv2",
      "policyName": "Daily180dayRetention",
      "scheduleRunDays": "Sunday",
      "scheduleRunTimes": "2016-09-21T05:30:00Z",
