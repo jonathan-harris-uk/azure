@@ -160,7 +160,7 @@
             "version": "latest"
           },
           "osDisk": {
-            "name": "[concat(parameters('vmName'),'_OSDisk')]",
+            "name": "[concat(parameters('vmName'),'_osdisk')]",
             "caching": "ReadWrite",
             "createOption": "FromImage",
             "managedDisk": {
