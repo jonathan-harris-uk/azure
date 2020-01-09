@@ -122,39 +122,49 @@
             }
           },
           "weeklySchedule": {
-            "daysOfTheWeek": null,
-            "retentionTimes": null,
+            "daysOfTheWeek": "[parameters('daysOfTheWeek')]",
+            "retentionTimes": "[parameters('scheduleRunTimes')]",
             "retentionDuration": {
-              "count": null,
-              "durationType": null
+              "count": "[parameters('weeklyRetentionDurationCount')]",
+              "durationType": "Weeks"
             }
           },
           "monthlySchedule": {
-            "retentionScheduleFormatType": null,
+            "retentionScheduleFormatType": "Daily",
             "retentionScheduleDaily": {
-              "daysOfTheMonth": null
+              "daysOfTheMonth": [
+                {
+                  "date": 1,
+                  "isLast": false
+                }
+              ]
             },
             "retentionScheduleWeekly": null,
-            "retentionTimes": null,
+            "retentionTimes": "[parameters('scheduleRunTimes')]",
             "retentionDuration": {
-              "count": null,
-              "durationType": null
+              "count": "[parameters('monthlyRetentionDurationCount')]",
+              "durationType": "Months"
             }
           },
           "yearlySchedule": {
-            "retentionScheduleFormatType": null,
-            "monthsOfYear": null,
+            "retentionScheduleFormatType": "Daily",
+            "monthsOfYear": "[parameters('monthsOfYear')]",
             "retentionScheduleDaily": {
-              "daysOfTheMonth": null
+              "daysOfTheMonth": [
+                {
+                  "date": 1,
+                  "isLast": false
+                }
+              ]
             },
             "retentionScheduleWeekly": null,
-            "retentionTimes": null,
+            "retentionTimes": "[parameters('scheduleRunTimes')]",
             "retentionDuration": {
-              "count": null,
-              "durationType": null
+              "count": "[parameters('yearlyRetentionDurationCount')]",
+              "durationType": "Years"
             }
           },
-          "retentionPolicyType": null          
+          "retentionPolicyType": "LongTermRetentionPolicy"
         },
         "timeZone": "[parameters('timeZone')]"
       }
