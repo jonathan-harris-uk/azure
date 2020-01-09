@@ -56,17 +56,17 @@
         },
         "retentionPolicy": {
           "dailySchedule": {
-            "retentionTimes": "[parameters('scheduleRunTimes')]",
+            "retentionTimes": "[variables('scheduleRunTimes')]",
             "retentionDuration": {
-              "count": "[parameters('dailyRetentionDurationCount')]",
+              "count": "[variables('dailyRetentionDurationCount')]",
               "durationType": "Days"
             }
           },
           "weeklySchedule": {
-            "daysOfTheWeek": "[parameters('daysOfTheWeek')]",
-            "retentionTimes": "[parameters('scheduleRunTimes')]",
+            "daysOfTheWeek": "[variables('daysOfTheWeek')]",
+            "retentionTimes": "[variables('scheduleRunTimes')]",
             "retentionDuration": {
-              "count": "[parameters('weeklyRetentionDurationCount')]",
+              "count": "[variables('weeklyRetentionDurationCount')]",
               "durationType": "Weeks"
             }
           },
