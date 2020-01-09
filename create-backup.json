@@ -8,26 +8,6 @@
         "description": "Times in day when backup should be triggered. e.g. 01:00 or 13:00. Must be an array, however for IaaS VMs only one value is valid. This will be used in LTR too for daily, weekly, monthly and yearly backup."
       }
     },
-    "timeZone": {
-      "type": "string",
-      "metadata": {
-        "description": "Any Valid timezone, for example:UTC, Pacific Standard Time. Refer: https://msdn.microsoft.com/en-us/library/gg154758.aspx"
-      }
-    },
-    "instantRpRetentionRangeInDays": {
-      "type": "int",
-      "defaultValue": 2,
-      "allowedValues": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
-      "metadata": {
-        "description": "Number of days Instant Recovery Point should be retained"
-      }
-    },
     "dailyRetentionDurationCount": {
       "type": "int",
       "metadata": {
@@ -75,6 +55,8 @@
   "variables": {
     "vaultName": "rsv2",
     "policyName": "Daily180dayRetention",
+    "timeZone": "UTC",
+    "instantRpRetentionRangeInDays": "2",
   },
   "resources": [
     {
@@ -98,7 +80,7 @@
       "location": "[parameters('location')]",
       "properties": {
         "backupManagementType": "AzureIaasVM",
-        "instantRpRetentionRangeInDays": "[parameters('instantRpRetentionRangeInDays')]",
+        "instantRpRetentionRangeInDays": "[variables('instantRpRetentionRangeInDays')]",
         "schedulePolicy": {
           "scheduleRunFrequency": "Daily",
           "scheduleRunDays": null,
@@ -158,7 +140,7 @@
           },
           "retentionPolicyType": "LongTermRetentionPolicy"
         },
-        "timeZone": "[parameters('timeZone')]"
+        "timeZone": "[variables('timeZone')]"
       }
     }
   ]
