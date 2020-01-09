@@ -20,12 +20,6 @@
         "description": "Array of Months for Yearly Retention"
       }
     },
-    "yearlyRetentionDurationCount": {
-      "type": "int",
-      "metadata": {
-        "description": "Number of years you want to retain the backup"
-      }
-    },
     "location": {
       "type": "string",
       "defaultValue": "[resourceGroup().location]",
@@ -41,7 +35,8 @@
     "instantRpRetentionRangeInDays": "2",
     "dailyRetentionDurationCount": "180",
     "weeklyRetentionDurationCount": "1",
-    "monthlyRetentionDurationCount": "1"
+    "monthlyRetentionDurationCount": "1",
+    "yearlyRetentionDurationCount": "1"
   },
   "resources": [
     {
@@ -119,7 +114,7 @@
             "retentionScheduleWeekly": null,
             "retentionTimes": "[parameters('scheduleRunTimes')]",
             "retentionDuration": {
-              "count": "[parameters('yearlyRetentionDurationCount')]",
+              "count": "[variables('yearlyRetentionDurationCount')]",
               "durationType": "Years"
             }
           },
