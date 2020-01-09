@@ -2,6 +2,12 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "timeZone": {
+      "type": "string",
+      "metadata": {
+        "description": "Any Valid timezone, for example:UTC, Pacific Standard Time. Refer: https://msdn.microsoft.com/en-us/library/gg154758.aspx"
+      }
+    },
     "instantRpRetentionRangeInDays": {
       "type": "int",
       "defaultValue": 2,
@@ -64,7 +70,6 @@
     "vaultName": "rsv2",
     "policyName": "Daily180dayRetention",
     "scheduleRunTimes": "2017-01-26T23:30:00Z",
-    "timeZone": "UTC",
   },
   "resources": [
     {
@@ -148,7 +153,7 @@
           },
           "retentionPolicyType": "LongTermRetentionPolicy"
         },
-        "timeZone": "[variables('timeZone')]"
+        "timeZone": "[parameters('timeZone')]"
       }
     }
   ]
