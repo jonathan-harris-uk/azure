@@ -11,7 +11,7 @@
     }
   },
    "variables": {
-     "vaultName": "RSvault2",
+     "vaultName": "rsv1",
      "policyName": "WeeklyBackupPolicy2",
      "scheduleRunDays": "Sunday",
      "scheduleRunTimes": "2016-09-21T05:30:00Z",
