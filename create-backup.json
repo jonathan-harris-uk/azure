@@ -17,6 +17,7 @@
      "scheduleRunTimes": "2016-09-21T05:30:00Z",
      "timeZone": "UTC",
      "dailyRetentionDurationCount": "180",
+     "daysofTheWeek": "Sunday",
      "daysOfTheWeekForMontlyRetention": "Sunday",
      "weeksOfTheMonthForMonthlyRetention": "First",
      "monthlyRetentionDurationCount": "1",
