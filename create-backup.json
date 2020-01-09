@@ -46,7 +46,7 @@
     "timeZone": "UTC",
     "instantRpRetentionRangeInDays": "2",
     "dailyRetentionDurationCount": "180",
-    "daysOfTheWeek": "Friday"
+    "daysOfTheWeek": "Friday",
   },
   "resources": [
     {
