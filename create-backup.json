@@ -121,7 +121,7 @@
               "durationType": "Days"
             }
           },
-          "weeklySchedule": {
+          "weeklySchedule": null, {
             "daysOfTheWeek": "[parameters('daysOfTheWeek')]",
             "retentionTimes": "[parameters('scheduleRunTimes')]",
             "retentionDuration": {
@@ -129,7 +129,7 @@
               "durationType": "Weeks"
             }
           },
-          "monthlySchedule": {
+          "monthlySchedule": null, {
             "retentionScheduleFormatType": "Daily",
             "retentionScheduleDaily": {
               "daysOfTheMonth": [
@@ -146,7 +146,7 @@
               "durationType": "Months"
             }
           },
-          "yearlySchedule": {
+          "yearlySchedule": null, {
             "retentionScheduleFormatType": "Daily",
             "monthsOfYear": "[parameters('monthsOfYear')]",
             "retentionScheduleDaily": {
