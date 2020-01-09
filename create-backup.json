@@ -8,6 +8,12 @@
         "description": "Times in day when backup should be triggered. e.g. 01:00 or 13:00. Must be an array, however for IaaS VMs only one value is valid. This will be used in LTR too for daily, weekly, monthly and yearly backup."
       }
     },
+    "daysOfTheWeek": {
+      "type": "array",
+      "metadata": {
+        "description": "Backup will run on array of Days like, Monday, Tuesday etc. Applies in Weekly retention only."
+      }
+    },
     "weeklyRetentionDurationCount": {
       "type": "int",
       "metadata": {
@@ -45,8 +51,7 @@
     "policyName": "Daily180dayRetention",
     "timeZone": "UTC",
     "instantRpRetentionRangeInDays": "2",
-    "dailyRetentionDurationCount": "180",
-    "daysOfTheWeek": "Friday",
+    "dailyRetentionDurationCount": "180"
   },
   "resources": [
     {
@@ -86,7 +91,7 @@
             }
           },
           "weeklySchedule": {
-            "daysOfTheWeek": "[variables('daysOfTheWeek')]",
+            "daysOfTheWeek": "[parameters('daysOfTheWeek')]",
             "retentionTimes": "[parameters('scheduleRunTimes')]",
             "retentionDuration": {
               "count": "[parameters('weeklyRetentionDurationCount')]",
