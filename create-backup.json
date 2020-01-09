@@ -146,8 +146,6 @@
             "monthsOfYear": null,
             "retentionScheduleDaily": {
               "daysOfTheMonth": null
-                }
-              ]
             },
             "retentionScheduleWeekly": null,
             "retentionTimes": null,
