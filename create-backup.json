@@ -14,18 +14,6 @@
         "description": "Backup will run on array of Days like, Monday, Tuesday etc. Applies in Weekly retention only."
       }
     },
-    "weeklyRetentionDurationCount": {
-      "type": "int",
-      "metadata": {
-        "description": "Number of weeks you want to retain the backup"
-      }
-    },
-    "monthlyRetentionDurationCount": {
-      "type": "int",
-      "metadata": {
-        "description": "Number of months you want to retain the backup"
-      }
-    },
     "monthsOfYear": {
       "type": "array",
       "metadata": {
@@ -52,6 +40,8 @@
     "timeZone": "UTC",
     "instantRpRetentionRangeInDays": "2",
     "dailyRetentionDurationCount": "180"
+    "weeklyRetentionDurationCount": "1",
+    "monthlyRetentionDurationCount":"1",
   },
   "resources": [
     {
@@ -94,7 +84,7 @@
             "daysOfTheWeek": "[parameters('daysOfTheWeek')]",
             "retentionTimes": "[parameters('scheduleRunTimes')]",
             "retentionDuration": {
-              "count": "[parameters('weeklyRetentionDurationCount')]",
+              "count": "[variables('weeklyRetentionDurationCount')]",
               "durationType": "Weeks"
             }
           },
@@ -111,7 +101,7 @@
             "retentionScheduleWeekly": null,
             "retentionTimes": "[parameters('scheduleRunTimes')]",
             "retentionDuration": {
-              "count": "[parameters('monthlyRetentionDurationCount')]",
+              "count": "[variables('monthlyRetentionDurationCount')]",
               "durationType": "Months"
             }
           },
