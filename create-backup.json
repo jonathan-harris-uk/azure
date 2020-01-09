@@ -32,7 +32,7 @@
       "type": "int",
       "metadata": {
         "description": "Number of days you want to retain the backup"
-      }]
+      }
     },
     "daysOfTheWeek": {
       "type": "array",
