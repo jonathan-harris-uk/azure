@@ -130,41 +130,33 @@
             }
           },
           "monthlySchedule": {
-            "retentionScheduleFormatType": "Daily",
+            "retentionScheduleFormatType": null,
             "retentionScheduleDaily": {
-              "daysOfTheMonth": [
-                {
-                  "date": 1,
-                  "isLast": false
-                }
-              ]
+              "daysOfTheMonth": null
             },
             "retentionScheduleWeekly": null,
-            "retentionTimes": "[parameters('scheduleRunTimes')]",
+            "retentionTimes": null,
             "retentionDuration": {
-              "count": "[parameters('monthlyRetentionDurationCount')]",
-              "durationType": "Months"
+              "count": null,
+              "durationType": null
             }
           },
           "yearlySchedule": {
-            "retentionScheduleFormatType": "Daily",
-            "monthsOfYear": "[parameters('monthsOfYear')]",
+            "retentionScheduleFormatType": null,
+            "monthsOfYear": null,
             "retentionScheduleDaily": {
-              "daysOfTheMonth": [
-                {
-                  "date": 1,
-                  "isLast": false
+              "daysOfTheMonth": null
                 }
               ]
             },
             "retentionScheduleWeekly": null,
-            "retentionTimes": "[parameters('scheduleRunTimes')]",
+            "retentionTimes": null,
             "retentionDuration": {
-              "count": "[parameters('yearlyRetentionDurationCount')]",
-              "durationType": "Years"
+              "count": null,
+              "durationType": null
             }
           },
-          "retentionPolicyType": "LongTermRetentionPolicy"          
+          "retentionPolicyType": null          
         },
         "timeZone": "[parameters('timeZone')]"
       }
