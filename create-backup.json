@@ -122,11 +122,11 @@
             }
           },
           "weeklySchedule": {
-            "daysOfTheWeek": "[parameters('daysOfTheWeek')]",
-            "retentionTimes": "[parameters('scheduleRunTimes')]",
+            "daysOfTheWeek": null,
+            "retentionTimes": null,
             "retentionDuration": {
-              "count": "[parameters('weeklyRetentionDurationCount')]",
-              "durationType": "Weeks"
+              "count": null,
+              "durationType": null
             }
           },
           "monthlySchedule": {
