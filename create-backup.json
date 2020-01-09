@@ -1,19 +1,6 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
-  "parameters": {
-    "vaultName": {
-      "type": "string",
-      "metadata": {
-        "description": "Name of the Recovery Services Vault"
-      }
-    },
-    "policyName": {
-      "type": "string",
-      "metadata": {
-        "description": "Name of the Backup Policy"
-      }
-    },
     "scheduleRunTimes": {
       "type": "array",
       "metadata": {
@@ -85,6 +72,8 @@
     }
    },
   "variables": {
+    "vaultName": "rsv2",
+    "policyName": "Daily180dayRetention",
   },
   "resources": [
     {
