@@ -2,16 +2,78 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "vaultName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the Recovery Services Vault"
+      }
+    },
+    "policyName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the Backup Policy"
+      }
+    },
+    "scheduleRunTimes": {
+      "type": "array",
+      "metadata": {
+        "description": "Times in day when backup should be triggered. e.g. 01:00 or 13:00. Must be an array, however for IaaS VMs only one value is valid. This will be used in LTR too for daily, weekly, monthly and yearly backup."
+      }
+    },
+    "timeZone": {
+      "type": "string",
+      "metadata": {
+        "description": "Any Valid timezone, for example:UTC, Pacific Standard Time. Refer: https://msdn.microsoft.com/en-us/library/gg154758.aspx"
+      }
+    },
+    "instantRpRetentionRangeInDays": {
+      "type": "int",
+      "defaultValue": 2,
+      "allowedValues": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "metadata": {
+        "description": "Number of days Instant Recovery Point should be retained"
+      }
+    },
+    "dailyRetentionDurationCount": {
+      "type": "int",
+      "metadata": {
+        "description": "Number of days you want to retain the backup"
+      }
+    },
     "daysOfTheWeek": {
       "type": "array",
       "metadata": {
         "description": "Backup will run on array of Days like, Monday, Tuesday etc. Applies in Weekly retention only."
       }
     },
+    "weeklyRetentionDurationCount": {
+      "type": "int",
+      "metadata": {
+        "description": "Number of weeks you want to retain the backup"
+      }
+    },
+    "monthlyRetentionDurationCount": {
+      "type": "int",
+      "metadata": {
+        "description": "Number of months you want to retain the backup"
+      }
+    },
     "monthsOfYear": {
       "type": "array",
       "metadata": {
         "description": "Array of Months for Yearly Retention"
+      }
+    },
+    "yearlyRetentionDurationCount": {
+      "type": "int",
+      "metadata": {
+        "description": "Number of years you want to retain the backup"
       }
     },
     "location": {
@@ -23,21 +85,12 @@
     }
    },
   "variables": {
-    "vaultName": "rsv2",
-    "policyName": "Daily180dayRetention",
-    "scheduleRunTimes": "2017-01-26T23:30:00Z",
-    "timeZone": "UTC",
-    "instantRpRetentionRangeInDays": "2",
-    "dailyRetentionDurationCount": "180",
-    "weeklyRetentionDurationCount": "4",
-    "monthlyRetentionDurationCount":"3",
-    "yearlyRetentionDurationCount": "1"
   },
   "resources": [
     {
       "type": "Microsoft.RecoveryServices/vaults",
       "apiVersion": "2015-11-10",
-      "name": "[variables('vaultName')]",
+      "name": "[parameters('vaultName')]",
       "location": "[parameters('location')]",
       "sku": {
         "name": "RS0",
@@ -47,34 +100,34 @@
     },
     {
       "apiVersion": "2016-06-01",
-      "name": "[concat(variables('vaultName'), '/', variables('policyName'))]",
+      "name": "[concat(parameters('vaultName'), '/', parameters('policyName'))]",
       "type": "Microsoft.RecoveryServices/vaults/backupPolicies",
       "dependsOn": [
-        "[concat('Microsoft.RecoveryServices/vaults/', variables('vaultName'))]"
+        "[concat('Microsoft.RecoveryServices/vaults/', parameters('vaultName'))]"
       ],
       "location": "[parameters('location')]",
       "properties": {
         "backupManagementType": "AzureIaasVM",
-        "instantRpRetentionRangeInDays": "[variables('instantRpRetentionRangeInDays')]",
+        "instantRpRetentionRangeInDays": "[parameters('instantRpRetentionRangeInDays')]",
         "schedulePolicy": {
           "scheduleRunFrequency": "Daily",
           "scheduleRunDays": null,
-          "scheduleRunTimes": "[variables('scheduleRunTimes')]",
+          "scheduleRunTimes": "[parameters('scheduleRunTimes')]",
           "schedulePolicyType": "SimpleSchedulePolicy"
         },
         "retentionPolicy": {
           "dailySchedule": {
-            "retentionTimes": "[variables('scheduleRunTimes')]",
+            "retentionTimes": "[parameters('scheduleRunTimes')]",
             "retentionDuration": {
-              "count": "[variables('dailyRetentionDurationCount')]",
+              "count": "[parameters('dailyRetentionDurationCount')]",
               "durationType": "Days"
             }
           },
           "weeklySchedule": {
             "daysOfTheWeek": "[parameters('daysOfTheWeek')]",
-            "retentionTimes": "[variables('scheduleRunTimes')]",
+            "retentionTimes": "[parameters('scheduleRunTimes')]",
             "retentionDuration": {
-              "count": "[variables('weeklyRetentionDurationCount')]",
+              "count": "[parameters('weeklyRetentionDurationCount')]",
               "durationType": "Weeks"
             }
           },
@@ -89,9 +142,9 @@
               ]
             },
             "retentionScheduleWeekly": null,
-            "retentionTimes": "[variables('scheduleRunTimes')]",
+            "retentionTimes": "[parameters('scheduleRunTimes')]",
             "retentionDuration": {
-              "count": "[variables('monthlyRetentionDurationCount')]",
+              "count": "[parameters('monthlyRetentionDurationCount')]",
               "durationType": "Months"
             }
           },
@@ -107,15 +160,15 @@
               ]
             },
             "retentionScheduleWeekly": null,
-            "retentionTimes": "[variables('scheduleRunTimes')]",
+            "retentionTimes": "[parameters('scheduleRunTimes')]",
             "retentionDuration": {
-              "count": "[variables('yearlyRetentionDurationCount')]",
+              "count": "[parameters('yearlyRetentionDurationCount')]",
               "durationType": "Years"
             }
           },
           "retentionPolicyType": "LongTermRetentionPolicy"
         },
-        "timeZone": "[variables('timeZone')]"
+        "timeZone": "[parameters('timeZone')]"
       }
     }
   ]
