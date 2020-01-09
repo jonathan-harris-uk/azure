@@ -59,6 +59,12 @@
         "description": "Name of the virtual machine."
       }
     },  
+    "osDiskSize": {
+      "type": "string",
+       "metadata": {
+        "description": "Size of the OS Disk."
+      }
+    },  
     "subscriptionId": {
       "type": "string",
        "metadata": {
@@ -160,7 +166,7 @@
             "managedDisk": {
               "storageAccountType": "Standard_LRS"
             },
-            "diskSizeGB": 127
+            "diskSizeGB": (parameters('osDiskSize')
           },
           "dataDisks": []
         },
