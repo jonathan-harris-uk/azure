@@ -41,7 +41,7 @@
     "instantRpRetentionRangeInDays": "2",
     "dailyRetentionDurationCount": "180"
     "weeklyRetentionDurationCount": "1",
-    "monthlyRetentionDurationCount":"1",
+    "monthlyRetentionDurationCount": "1"
   },
   "resources": [
     {
