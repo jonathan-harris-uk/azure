@@ -20,6 +20,7 @@
      "daysofTheWeek": "Sunday",
      "daysOfTheWeekForMontlyRetention": "Sunday",
      "weeksOfTheMonthForMonthlyRetention": "First",
+     "weeklyRetentionDurationCount": "1",
      "monthlyRetentionDurationCount": "1",
      "monthsOfYear": "January",
      "daysOfTheWeekForYearlyRetention": "Sunday",
