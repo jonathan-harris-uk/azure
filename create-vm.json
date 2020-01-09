@@ -139,7 +139,7 @@
         "osProfile": {
           "computerName": "[parameters('vmName')]",
           "adminUsername": "[parameters('adminUsername')]",
-          "adminPassword": "[parameters('adminPassword')]"
+          "adminPassword": "[parameters('adminPassword')]",
           "windowsConfiguration": {
             "provisionVMAgent": true,
             "enableAutomaticUpdates": true
@@ -156,7 +156,7 @@
           "osDisk": {
             "name": "[concat(variables('vmName'),'_OSDisk')]",
             "caching": "ReadWrite",
-            "createOption": "FromImage"
+            "createOption": "FromImage",
              "managedDisk": {
               "storageAccountType": "Standard_LRS"
             },
