@@ -5,7 +5,7 @@
     "adminUsername": {
       "type": "string",
       "metadata": {
-        "description": "Username for the Virtual Machine."
+        "description": "Administrator username for the Virtual Machine."
       }
     },
     "location": {
@@ -18,7 +18,7 @@
     "adminPassword": {
       "type": "securestring",
       "metadata": {
-        "description": "Password for the Virtual Machine."
+        "description": "Administrator password for the Virtual Machine."
       }
     },
     "dnsLabelPrefix": {
@@ -31,10 +31,10 @@
       "type": "string",
       "defaultValue": "2019-Datacenter",
        "allowedValues": [
-        "2012-R2-Datacenter",
         "2012-R2-Datacenter-smalldisk",
-        "2016-Datacenter",
+        "2012-R2-Datacenter",
         "2016-Datacenter-smalldisk",
+        "2016-Datacenter",
         "2019-Datacenter"
       ],
       "metadata": {
@@ -140,6 +140,11 @@
           "computerName": "[parameters('vmName')]",
           "adminUsername": "[parameters('adminUsername')]",
           "adminPassword": "[parameters('adminPassword')]"
+          "windowsConfiguration": {
+            "provisionVMAgent": true,
+            "enableAutomaticUpdates": true
+          },
+          "secrets": []
         },
         "storageProfile": {
           "imageReference": {
@@ -149,7 +154,15 @@
             "version": "latest"
           },
           "osDisk": {
+            "name": "[concat(variables('vmName'),'_OSDisk')]",
+            "caching": "ReadWrite",
             "createOption": "FromImage"
+             "managedDisk": {
+              "storageAccountType": "Standard_LRS"
+            },
+            "diskSizeGB": 64
+          },
+          "dataDisks": []
           }
         },
         "networkProfile": {
