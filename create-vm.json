@@ -140,6 +140,11 @@
           "computerName": "[parameters('vmName')]",
           "adminUsername": "[parameters('adminUsername')]",
           "adminPassword": "[parameters('adminPassword')]",  
+           "windowsConfiguration": {
+            "provisionVMAgent": true,
+            "enableAutomaticUpdates": true
+          },
+          "secrets": []
         },
         "storageProfile": {
           "imageReference": {
@@ -149,8 +154,15 @@
             "version": "latest"
           },
           "osDisk": {
+            "name": "[concat(variables('VMName'),'_OSDisk')]",
+            "caching": "ReadWrite",
             "createOption": "FromImage",
-          }
+            "managedDisk": {
+              "storageAccountType": "Standard_LRS"
+            },
+            "diskSizeGB": 127
+          },
+          "dataDisks": []
         },
         "networkProfile": {
           "networkInterfaces": [
