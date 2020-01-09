@@ -166,7 +166,7 @@
             "managedDisk": {
               "storageAccountType": "Standard_LRS"
             },
-            "diskSizeGB": "[(parameters('osDiskSize')]"
+            "diskSizeGB": "[parameters('osDiskSize')]"
           },
           "dataDisks": []
         },
