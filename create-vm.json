@@ -7,7 +7,8 @@
        "metadata": {
         "description": "Name of the Resource Group for the virtual machine."
       }
-    },   "adminUsername": {
+    },
+    "adminUsername": {
       "type": "string",
       "metadata": {
         "description": "Administrator username for the Virtual Machine."
@@ -87,7 +88,7 @@
     "backupVaultRGName": "rg-backups",
     "backupVaultName": "rsv2",
     "backupFabricName": "Azure",
-    "backupItemName": "[concat'vm;iaasvmcontainerv2;', parameters('resourceGroupName'), ';' parameters('vmName')) ]",
+    "backupItemName": "[concat('vm;iaasvmcontainerv2;', parameters('resourceGroupName'), ';' parameters('vmName'))]",
     "backupPolicyName": "Daily180dayRetention"
   },
   "resources": [
