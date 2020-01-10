@@ -195,7 +195,8 @@
             "storageUri": "[reference(resourceId('Microsoft.Storage/storageAccounts/', variables('storageAccountName'))).primaryEndpoints.blob]"
           }
         }
-    },
+    }
+  },    
 {
     "apiVersion": "2017-05-10",
     "name": "[concat(parameters('vmName'), '-' , 'BackupIntent')]",
