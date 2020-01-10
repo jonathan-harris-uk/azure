@@ -21,10 +21,7 @@
     "policyName": "Daily180dayRetention",
     "timeZone": "UTC",
     "instantRpRetentionRangeInDays": "2",
-    "dailyRetentionDurationCount": "180",
-    "weeklyRetentionDurationCount": "1",
-    "monthlyRetentionDurationCount": "1",
-    "yearlyRetentionDurationCount": "1"
+    "dailyRetentionDurationCount": "180"
   },
   "resources": [
     {
