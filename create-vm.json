@@ -88,7 +88,7 @@
     "backupVaultRGName": "rg-backups",
     "backupVaultName": "rsv2",
     "backupFabricName": "Azure",
-    "backupItemName": "[concat('vm;iaasvmcontainerv2;', parameters('resourceGroupName'), ';' parameters('vmName'))]",
+    "backupItemName": "[concat('vm;iaasvmcontainerv2;', parameters('resourceGroupName'), ';', parameters('vmName'))]",
     "backupPolicyName": "Daily180dayRetention"
   },
   "resources": [
