@@ -219,7 +219,7 @@
                 }
       }
     }
-  ],
+  },
   "outputs": {
     "hostname": {
       "type": "string",
