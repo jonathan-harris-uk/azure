@@ -1,4 +1,5 @@
-﻿{
+  
+{
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
@@ -193,8 +194,9 @@
             "enabled": true,
             "storageUri": "[reference(resourceId('Microsoft.Storage/storageAccounts/', variables('storageAccountName'))).primaryEndpoints.blob]"
           }
-        },
-    {
+        }
+    },
+{
     "apiVersion": "2017-05-10",
     "name": "[concat(parameters('vmName'), '-' , 'BackupIntent')]",
     "type": "Microsoft.Resources/deployments",
@@ -218,7 +220,7 @@
                 }
             ]
         }
-},
+   ],
     "outputs": {
     "hostname": {
       "type": "string",
