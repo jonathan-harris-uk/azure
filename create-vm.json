@@ -59,12 +59,6 @@
         "description": "Name of the virtual machine."
       }
     },  
-    "resourceGroupName": {
-      "type": "string",
-       "metadata": {
-        "description": "Name of the Resource Group for the virtual machine."
-      }
-    },  
     "osDiskSize": {
       "type": "string",
        "metadata": {
@@ -84,12 +78,7 @@
     "subnetName": "snet-lan",
     "publicIPAddressName": "[concat(parameters('vmName'), 'pip')]",
     "virtualNetworkName": "vnet1",
-    "subnetRef": "[resourceId(parameters('subscriptionId'), 'rg-networks', 'Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
-    "backupVaultName": "rsv1",
-    "backupFabricName": "Azure",
-    "backupVaultRGName": "rg-backups",
-    "backupPolicyName": "Daily180dayRetention",
-    "backupItemName": "[concat('vm;iaasvmcontainerv2;', parameters('resourceGroupName', ';', parameters('vmName'))]" 
+    "subnetRef": "[resourceId(parameters('subscriptionId'), 'rg-networks', 'Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]"
   },
   "resources": [
     {
@@ -195,9 +184,9 @@
           }
         },
             "apiVersion": "2017-05-10",
-            "name": "[concat(parameters('vmName'), '-' , 'BackupIntent')]",
+            "name": "[concat(parameters('virtualMachineName'), '-' , 'BackupIntent')]",
             "type": "Microsoft.Resources/deployments",
-            "resourceGroup": "[variables('backupVaultRGName')]",
+            "resourceGroup": "[parameters('backupVaultRGName')]",
             "properties": {
                 "mode": "Incremental",
                 "template": {
@@ -205,21 +194,22 @@
                     "contentVersion": "1.0.0.0",
                     "resources": [
                         {
-                            "name": "[concat(variables('backupVaultName'), '/', variables('backupFabricName'), '/', variables('backupItemName'))]",
+                            "name": "[concat(parameters('backupVaultName'), '/', parameters('backupFabricName'), '/', parameters('backupItemName'))]",
                             "apiVersion": "2017-07-01",
                             "type": "Microsoft.RecoveryServices/vaults/backupFabrics/backupProtectionIntent",
                             "properties": {
-                                "friendlyName": "[concat(parameters('vmName'), 'BackupIntent')]",
+                                "friendlyName": "[concat(parameters('virtualMachineName'), 'BackupIntent')]",
                                 "protectionIntentItemType": "AzureResourceItem",
-                                "policyId": "[resourceId(variables('backupVaultRGName'), 'Microsoft.RecoveryServices/vaults/backupPolicies', variables('backupVaultName'), variables('backupPolicyName'))]",
-                                "sourceResourceId": "[resourceId(parameters('resourceGroupName'), 'Microsoft.Compute/virtualMachines', parameters('vmName'))]"
+                                "policyId": "[resourceId(parameters('backupVaultRGName'), 'Microsoft.RecoveryServices/vaults/backupPolicies', parameters('backupVaultName'), parameters('backupPolicyName'))]",
+                                "sourceResourceId": "[resourceId(parameters('virtualMachineRG'), 'Microsoft.Compute/virtualMachines', parameters('virtualMachineName'))]"
                             }
                         }
                     ]
                 }
-      }
+            }
+        }
     }
-  },
+  ],
   "outputs": {
     "hostname": {
       "type": "string",
