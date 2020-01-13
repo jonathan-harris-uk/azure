@@ -25,15 +25,15 @@
     },
     "resources": [
 		{
-			"name": "[concat(parameters('backupVaultName'), '/', parameters('backupFabricName'), '/', parameters('backupItemName'))]",
+			"name": "[concat(variables('backupVaultName'), '/', variables('backupFabricName'), '/', variables('backupItemName'))]",
 			"type": "Microsoft.RecoveryServices/vaults/backupFabrics/backupProtectionIntent",
 			"apiVersion": "2017-07-01",
 			"location": "[parameters('location')]",
 			"tags": {},
 			"properties": {
 				"backupManagementType": "AzureIaasVM",
-				"sourceResourceId": "[resourceId(parameters('virtualMachineRG'), 'Microsoft.Compute/virtualMachines', parameters('virtualMachineName'))]",
-				"policyId": "[resourceId(parameters('backupVaultRGName'), 'Microsoft.RecoveryServices/vaults/backupPolicies', parameters('backupVaultName'), parameters('backupPolicyName'))]",
+				"sourceResourceId": "[resourceId(variables('virtualMachineRG'), 'Microsoft.Compute/virtualMachines', parameters('virtualMachineName'))]",
+				"policyId": "[resourceId(variables('backupVaultRGName'), 'Microsoft.RecoveryServices/vaults/backupPolicies', parameters('backupVaultName'), variables('backupPolicyName'))]",
 				"protectionState": "string",
 				"protectionIntentItemType": "AzureResourceItem"
 			}
