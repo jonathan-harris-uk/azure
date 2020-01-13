@@ -4,30 +4,24 @@
     "parameters": {
         "location": {
             "type": "string"
+            "metadata": {
+              "description": "Location for all resources."
+            }
         },
         "virtualMachineName": {
             "type": "string"
-        },
-        "virtualMachineRG": {
-            "type": "string"
-        },
-        "backupVaultRGName": {
-            "type": "string"
-        },
-        "backupVaultName": {
-            "type": "string"
-        },
-        "backupFabricName": {
-            "type": "string"
-        },
-        "backupPolicyName": {
-            "type": "string"
-        },
-        "backupItemName": {
-            "type": "string"
-        }
+            "metadata": {
+              "description": "Name of Virtual Machine to be backed up."
+            }
+        }    
     },
     "variables": {
+	"virtualMachineRG": "rg-vms",
+    "backupVaultRGName" "rg-backups",
+    "backupVaultName" "rsv1",
+    "backupFabricName" "Azure",
+    "backupPolicyName" "Daily180dayRetention",
+    "backupItemName" "[concat('vm;iaasvmcontainerv2;', variables('virtualMachineRG'), ';', parameters('virtualMachineName'))]"
     },
     "resources": [
 		{
