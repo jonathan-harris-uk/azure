@@ -14,7 +14,7 @@ $subscriptionId = Read-Host -Prompt "Enter Azure subscription ID, from Get-AzSub
 New-AzResourceGroup -Name $resourceGroupName -Location "$location"
 New-AzResourceGroupDeployment `
     -ResourceGroupName $resourceGroupName `
-    -TemplateUri "https://raw.githubusercontent.com/jonathan-harris-uk/azure/vms/create-vm.json" `
+    -TemplateUri "https://raw.githubusercontent.com/jonathan-harris-uk/azure/vms/101-create-vm.json" `
     -adminUsername $adminUsername `
     -adminPassword $adminPassword `
     -dnsLabelPrefix $dnsLabelPrefix `
