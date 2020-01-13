@@ -3,20 +3,20 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "location": {
-            "type": "string"
+            "type": "string",
             "metadata": {
               "description": "Location for all resources."
             }
         },
         "virtualMachineName": {
-            "type": "string"
+            "type": "string",
             "metadata": {
               "description": "Name of Virtual Machine to be backed up."
             }
         }    
     },
     "variables": {
-	  "virtualMachineRG": "rg-vms",
+      "virtualMachineRG": "rg-vms",
       "backupVaultRGName" "rg-backups",
       "backupVaultName" "rsv1",
       "backupFabricName" "Azure",
