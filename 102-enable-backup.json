@@ -18,7 +18,7 @@
     "variables": {
       "virtualMachineRG": "rg-vms",
       "backupVaultRGName": "rg-backups",
-      "backupVaultName": "rsv3",
+      "backupVaultName": "rsv1",
       "backupFabricName": "Azure",
       "backupPolicyName": "Daily180dayRetention",
       "backupItemName": "[concat('vm;iaasvmcontainerv2;', variables('virtualMachineRG'), ';', parameters('virtualMachineName'))]"
