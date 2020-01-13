@@ -1,16 +1,13 @@
 #Set Varriables
+$resourceGroupName = Read-Host -Prompt "Enter the Resource Group name"
 $location = Read-Host -Prompt "Enter the location (i.e. centralus)"
 $virtualMachineName = Read-Host -Prompt "Enter the name of the VM to be backed up"
-$virtualMachineRG = Read-Host -Prompt "Enter the name of the Resource Group where the VM is located"
-$backupVaultRGName = Read-Host -Prompt "Enter the name Resource Group where the RSV is located"
-$backupVaultName = Read-Host -Prompt "Enter the name of the RSV" 
-$backupFabricName = Read-Host -Prompt "Enter Azure"
-$backupPolicyName = Read-Host -Prompt "Enter the name of the backup policy"
-$backupItemName = Read-Host -Prompt "Enter vm;iaasvmcontainerv2;rg-vms;VMNAME"
 
 #Build Resources
 New-AzResourceGroupDeployment `
     -ResourceGroupName $resourceGroupName `
-    -TemplateUri "https://raw.githubusercontent.com/jonathan-harris-uk/azure/backup/102-enable-backup.json"
+    -TemplateUri "https://raw.githubusercontent.com/jonathan-harris-uk/azure/backup/102-enable-backup.json" `
+    -location $location `
+    -virtualMachineName $virtualMachineName
 
 (Get-AzVm -ResourceGroupName $resourceGroupName).name
