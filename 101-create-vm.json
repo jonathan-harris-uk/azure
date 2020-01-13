@@ -90,11 +90,10 @@
         "name": "Standard_LRS"
       },
       "kind": "Storage",
-      "properties": {}
-      },
-        "tags": {
-            "Server": "azxxxprdfile2"
-        }
+      "properties": {},
+      "tags": {
+          "Server": "parameters('vmName')"
+      }
     },
     {
       "type": "Microsoft.Network/publicIPAddresses",
@@ -106,6 +105,9 @@
         "dnsSettings": {
           "domainNameLabel": "[parameters('dnsLabelPrefix')]"
         }
+      },
+      "tags": {
+        "Server": "parameters('vmName')"
       }
     },
     {
@@ -131,6 +133,9 @@
             }
           }
         ]
+      },
+      "tags": {
+        "Server": "parameters('vmName')"
       }
     },
     {
@@ -187,6 +192,9 @@
             "storageUri": "[reference(resourceId('Microsoft.Storage/storageAccounts/', variables('storageAccountName'))).primaryEndpoints.blob]"
           }
         }
+      },
+      "tags": {
+        "Server": "parameters('vmName')"
       }
     }
   ],
