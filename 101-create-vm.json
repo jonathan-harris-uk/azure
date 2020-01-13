@@ -91,7 +91,11 @@
       },
       "kind": "Storage",
       "properties": {}
-    },   
+      },
+        "tags": {
+            "Server": "azxxxprdfile2"
+        }
+    },
     {
       "type": "Microsoft.Network/publicIPAddresses",
       "apiVersion": "2018-11-01",
