@@ -33,7 +33,7 @@
 			"properties": {
 				"backupManagementType": "AzureIaasVM",
 				"sourceResourceId": "[resourceId(variables('virtualMachineRG'), 'Microsoft.Compute/virtualMachines', parameters('virtualMachineName'))]",
-				"policyId": "[resourceId(variables('backupVaultRGName'), 'Microsoft.RecoveryServices/vaults/backupPolicies', parameters('backupVaultName'), variables('backupPolicyName'))]",
+				"policyId": "[resourceId(variables('backupVaultRGName'), 'Microsoft.RecoveryServices/vaults/backupPolicies', variables('backupVaultName'), variables('backupPolicyName'))]",
 				"protectionState": "string",
 				"protectionIntentItemType": "AzureResourceItem"
 			}
