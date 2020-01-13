@@ -1,14 +1,7 @@
-  
 {
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-     "resourceGroupName": {
-      "type": "string",
-       "metadata": {
-        "description": "Name of the Resource Group for the virtual machine."
-      }
-    },
     "adminUsername": {
       "type": "string",
       "metadata": {
@@ -85,12 +78,7 @@
     "subnetName": "snet-lan",
     "publicIPAddressName": "[concat(parameters('vmName'), 'pip')]",
     "virtualNetworkName": "vnet1",
-    "subnetRef": "[resourceId(parameters('subscriptionId'), 'rg-networks', 'Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
-    "backupVaultRGName": "rg-backups",
-    "backupVaultName": "rsv2",
-    "backupFabricName": "Azure",
-    "backupItemName": "[concat('vm;iaasvmcontainerv2;', parameters('resourceGroupName'), ';', parameters('vmName'))]",
-    "backupPolicyName": "Daily180dayRetention"
+    "subnetRef": "[resourceId(parameters('subscriptionId'), 'rg-networks', 'Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]"
   },
   "resources": [
     {
@@ -143,7 +131,7 @@
     },
     {
       "type": "Microsoft.Compute/virtualMachines",
-      "apiVersion": "2019-07-01",
+      "apiVersion": "2018-10-01",
       "name": "[parameters('vmName')]",
       "location": "[parameters('location')]",
       "dependsOn": [
@@ -195,34 +183,10 @@
             "storageUri": "[reference(resourceId('Microsoft.Storage/storageAccounts/', variables('storageAccountName'))).primaryEndpoints.blob]"
           }
         }
+      }
     }
-  },    
-{
-    "apiVersion": "2017-05-10",
-    "name": "[concat(parameters('vmName'), '-' , 'BackupIntent')]",
-    "type": "Microsoft.Resources/deployments",
-    "resourceGroup": "[variables('backupVaultRGName')]",
-    "properties": {
-        "mode": "Incremental",
-        "template": {
-            "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-            "contentVersion": "1.0.0.0",
-            "resources": [
-                {
-                    "name": "[concat(variables('backupVaultName'), '/', variables('backupFabricName'), '/', variables('backupItemName'))]",
-                    "apiVersion": "2017-07-01",
-                    "type": "Microsoft.RecoveryServices/vaults/backupFabrics/backupProtectionIntent",
-                    "properties": {
-                        "friendlyName": "[concat(parameters('vmName'), 'BackupIntent')]",
-                        "protectionIntentItemType": "AzureResourceItem",
-                        "policyId": "[resourceId(variables('backupVaultRGName'), 'Microsoft.RecoveryServices/vaults/backupPolicies', variables('backupVaultName'), variables('backupPolicyName'))]",
-                        "sourceResourceId": "[resourceId(parameters('resourceGroupName'), 'Microsoft.Compute/virtualMachines', parameters('vmName'))]"
-                    }
-                }
-            ]
-        }
-    },
-    "outputs": {
+  ],
+  "outputs": {
     "hostname": {
       "type": "string",
       "value": "[reference(variables('publicIPAddressName')).dnsSettings.fqdn]"
