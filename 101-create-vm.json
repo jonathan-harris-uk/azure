@@ -92,7 +92,7 @@
       "kind": "Storage",
       "properties": {},
       "tags": {
-          "Server": "parameters('vmName')"
+          "Server": "[parameters('vmName')]"
       }
     },
     {
@@ -107,7 +107,7 @@
         }
       },
       "tags": {
-        "Server": "parameters('vmName')"
+        "Server": "[parameters('vmName')]"
       }
     },
     {
@@ -135,7 +135,7 @@
         ]
       },
       "tags": {
-        "Server": "parameters('vmName')"
+        "Server": "[parameters('vmName')]"
       }
     },
     {
@@ -194,7 +194,7 @@
         }
       },
       "tags": {
-        "Server": "parameters('vmName')"
+        "Server": "[parameters('vmName')]"
       }
     }
   ],
