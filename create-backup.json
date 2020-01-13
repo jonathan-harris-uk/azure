@@ -17,7 +17,7 @@
     }
    },
   "variables": {
-    "vaultName": "rsv2",
+    "vaultName": "rsv1",
     "policyName": "Daily180dayRetention",
     "timeZone": "UTC",
     "instantRpRetentionRangeInDays": "2",
