@@ -30,37 +30,18 @@
     "variables": {
     },
     "resources": [
-        {
-            "apiVersion": "2017-05-10",
-            "name": "[concat(parameters('virtualMachineName'), '-' , 'BackupIntent')]",
-            "type": "Microsoft.Resources/deployments",
-            "resourceGroup": "[parameters('backupVaultRGName')]",
-            "properties": {
-                "mode": "Incremental",
-                "template": {
-                    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-                    "contentVersion": "1.0.0.0",
-                    "resources": [
-                        {
-                            "name": "[concat(parameters('backupVaultName'), '/', parameters('backupFabricName'), '/', parameters('backupItemName'))]",
-                            "apiVersion": "2017-07-01",
-                            "type": "Microsoft.RecoveryServices/vaults/backupFabrics/backupProtectionIntent",
-                            "properties": {
-                                "friendlyName": "[concat(parameters('virtualMachineName'), 'BackupIntent')]",
-                                "protectionIntentItemType": "AzureResourceItem",
-                                "policyId": "[resourceId(parameters('backupVaultRGName'), 'Microsoft.RecoveryServices/vaults/backupPolicies', parameters('backupVaultName'), parameters('backupPolicyName'))]",
-                                "sourceResourceId": "[resourceId(parameters('virtualMachineRG'), '/subscriptions/3815f71a-867a-45ae-902a-472c5c0a4dde/resourceGroups/rg-vms/providers/Microsoft.Compute/virtualMachines/azxxxprdfile1', parameters('virtualMachineName'))]"
-                            }
-                        }
-                    ]
-                }
-            },
-        }
-    ],
-    "outputs": {
-        "adminUsername": {
-            "type": "string",
-            "value": "[parameters('adminUsername')]"
-        }
-    }
+		{
+			"name": "[concat(parameters('backupVaultName'), '/', parameters('backupFabricName'), '/', parameters('backupItemName'))]",
+			"type": "Microsoft.RecoveryServices/vaults/backupFabrics/backupProtectionIntent",
+			"apiVersion": "2017-07-01",
+			"location": "[parameters('location')]",
+			"tags": {},
+			"properties": {
+				"backupManagementType": "AzureIaasVM",
+				"sourceResourceId": "[resourceId(parameters('virtualMachineRG'), 'Microsoft.Compute/virtualMachines', parameters('virtualMachineName'))]",
+				"policyId": "[resourceId(parameters('backupVaultRGName'), 'Microsoft.RecoveryServices/vaults/backupPolicies', parameters('backupVaultName'), parameters('backupPolicyName'))]",
+				"protectionState": "string",
+				"protectionIntentItemType": "AzureResourceItem"
+			}
+		}
 }
