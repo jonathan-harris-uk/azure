@@ -94,6 +94,7 @@
       },
       "tags": {
                 "Server": "parameters('vmName')"
+            }
         }
     },   
     {
