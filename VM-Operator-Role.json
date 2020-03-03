@@ -9,7 +9,6 @@
       }
     }  
  },
-{
       "Name": "Virtual Machine Operator",
       "IsCustom": true,
       "Description": "Can deallocate, start  and restart virtual machines.",
