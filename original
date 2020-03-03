@@ -1,1 +1,1 @@
-az role definition create --role-definition "https://raw.githubusercontent.com/jonathan-harris-uk/azure/roles/original-VM-Operator-Role.json"
+az role definition create --role-definition "https://raw.githubusercontent.com/jonathan-harris-uk/azure/roles/Original-VM-Operator-Role.json"
