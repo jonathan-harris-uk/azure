@@ -1,6 +1,7 @@
 #Set Varriables
 $resourceGroupName = Read-Host -Prompt "Enter the Resource Group name"
-$location = Read-Host -Prompt "Enter the location (i.e. centralus)"
+    #Resouce Group where the RSV is running "rg-backups"
+$location = Read-Host -Prompt "Enter the location (i.e. uksouth)"
 $virtualMachineName = Read-Host -Prompt "Enter the name of the VM to be backed up"
 
 #Build Resources
