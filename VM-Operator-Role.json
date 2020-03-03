@@ -1,4 +1,15 @@
-    {
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "subscriptionId": {
+      "type": "string",
+       "metadata": {
+        "description": "Azure Subcription Id from Get-AzSubscription command."
+      }
+    }  
+ },
+{
       "Name": "Virtual Machine Operator",
       "IsCustom": true,
       "Description": "Can deallocate, start  and restart virtual machines.",
@@ -13,6 +24,6 @@
 
       ],
       "AssignableScopes": [
-        "/subscriptions/11111111-1111-1111-1111-111111111111"
+        "/subscriptions/(parameters('subscriptionId')"
       ]
     }
