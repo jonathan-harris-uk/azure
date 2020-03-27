@@ -1,6 +1,6 @@
 #Set Varriables
-$resourceGroupName = Read-Host -Prompt "Enter the Resource Group name"
-$location = Read-Host -Prompt "Enter the location (i.e. centralus)"
+$resourceGroupName = "backup-rg"
+$location = Read-Host -Prompt "Enter the location (i.e. uksouth, northeurope)"
 
 #Build Resources
 New-AzResourceGroup -Name $resourceGroupName -Location "$location"
