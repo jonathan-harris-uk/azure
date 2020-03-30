@@ -1,4 +1,4 @@
-az role definition create --role-definition '{
+  {
     "Name": "Virtual Machine Operator",
     "IsCustom": true,
     "Description": "Can deallocate, start  and restart virtual machines.",
