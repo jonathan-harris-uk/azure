@@ -1,8 +1,8 @@
-#Get Varriables
+#Get Variables
 $subscriptions = Get-AzSubscription
 $resourceGroup = Get-AzResourceGroup networks-rg
 
-#Set Varriables
+#Set Variables
 $subscriptionId = $subscriptions.id
 $resourceGroupName = "vms-rg"
 $location = $resourceGroup.location
