@@ -34,7 +34,7 @@
       "properties": {
         "securityRules": [
           {
-            "name":  "default-allow-3389",
+            "name":  "Allow3389InBound",
             "properties": {
               "priority":  1000,
               "access":  "Allow",
