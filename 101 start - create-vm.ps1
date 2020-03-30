@@ -1,3 +1,5 @@
+Get-AzSubscription
+
 #Set Varriables
 $subscriptionId = Read-Host -Prompt "Enter Azure subscription ID, from Get-AzSubscription command"
 $resourceGroupName = "vms-rg"
