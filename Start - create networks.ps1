@@ -1,5 +1,5 @@
 ﻿#Set Varriables
-$resourceGroupName = "network-rg"
+$resourceGroupName = "networks-rg"
 $location = Read-Host -Prompt "Enter the Azure Region (i.e. uksouth, northeurope)"
 $publicIP = Read-Host -Prompt "Enter the customer's Public IP Address - used to lock down RDP access"
 
