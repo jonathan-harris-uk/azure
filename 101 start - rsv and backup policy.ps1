@@ -1,6 +1,9 @@
-#Set Varriables
+#Get Variables
+$resourceGroup = Get-AzResourceGroup networks-rg
+
+#Set Variables
+$location = $resourceGroup.location
 $resourceGroupName = "backups-rg"
-$location = Read-Host -Prompt "Enter the location (i.e. uksouth, northeurope)"
 
 #Build Resources
 New-AzResourceGroup -Name $resourceGroupName -Location "$location"
