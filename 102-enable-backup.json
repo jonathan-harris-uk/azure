@@ -16,9 +16,9 @@
         }    
     },
     "variables": {
-      "virtualMachineRG": "rg-vms",
-      "backupVaultRGName": "rg-backups",
-      "backupVaultName": "rsv1",
+      "virtualMachineRG": "vms-rg",
+      "backupVaultRGName": "backups-rg",
+      "backupVaultName": "rsv",
       "backupFabricName": "Azure",
       "backupPolicyName": "Daily180dayRetention",
       "backupItemName": "[concat('vm;iaasvmcontainerv2;', variables('virtualMachineRG'), ';', parameters('virtualMachineName'))]"
