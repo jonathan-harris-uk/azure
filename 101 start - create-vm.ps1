@@ -1,7 +1,5 @@
-#Get Subscription ID
-Get-AzSubscription
-
 #Set Varriables
+Get-AzSubscription
 $subscriptionId = Read-Host -Prompt "Enter Azure subscription ID, from Get-AzSubscription command"
 $resourceGroupName = "vms-rg"
 $location = Read-Host -Prompt "Enter the location (i.e. uksouth, northeurope)"
