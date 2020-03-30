@@ -1,3 +1,4 @@
+#Get Subscription ID
 Get-AzSubscription
 
 #Set Varriables
