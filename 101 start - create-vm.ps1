@@ -1,8 +1,11 @@
+#Get Varriables
+$subscriptions = Get-AzSubscription
+$resourceGroup = Get-AzResourceGroup networks-rg
+
 #Set Varriables
-Get-AzSubscription
-$subscriptionId = Read-Host -Prompt "Enter Azure subscription ID, from Get-AzSubscription command"
+$subscriptionId = $subscriptions.id
 $resourceGroupName = "vms-rg"
-$location = Read-Host -Prompt "Enter the location (i.e. uksouth, northeurope)"
+$location = $resourceGroup.location
 $vmName = Read-Host -Prompt "Enter the VM Name (i.e. aznevm1)"
 $dnsLabelPrefix = $vmName
 $vmSize = Read-Host -Prompt "Enter the VM Size (i.e. Standard_B2s, Standard_B4ms, Standard_B8ms)"
