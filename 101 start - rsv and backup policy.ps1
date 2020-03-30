@@ -1,5 +1,5 @@
 #Set Varriables
-$resourceGroupName = "backup-rg"
+$resourceGroupName = "backups-rg"
 $location = Read-Host -Prompt "Enter the location (i.e. uksouth, northeurope)"
 
 #Build Resources
