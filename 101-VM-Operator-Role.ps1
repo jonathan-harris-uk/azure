@@ -1,5 +1,8 @@
-#Set Varriables
-$subscriptionId = Read-Host -Prompt "Enter Azure subscription ID, from Get-AzSubscription command"
+#Get Variables
+$subscriptions = Get-AzSubscription
+
+#Set Variables
+$subscriptionId = $subscriptions.id
 
 #Build Resources
 az role definition create --role-definition `
