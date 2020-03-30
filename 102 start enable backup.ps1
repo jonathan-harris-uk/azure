@@ -1,6 +1,9 @@
-#Set Varriables
-$resourceGroupName = "backups-rg"
-$location = Read-Host -Prompt "Enter the location (i.e. uksouth, northeurope)"
+#Get Variables
+$resourceGroup = Get-AzResourceGroup backups-rg
+
+#Set Variables
+$location = $resourceGroup.location
+$resourceGroupName = $resourcegroup.ResourceGroupName
 $virtualMachineName = Read-Host -Prompt "Enter the name of the VM to be backed up"
 
 #Build Resources
