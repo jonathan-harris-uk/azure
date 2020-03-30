@@ -1,6 +1,6 @@
 #Set Varriables
 $subscriptionId = Read-Host -Prompt "Enter Azure subscription ID, from Get-AzSubscription command"
-$resourceGroupName = "vm-rg"
+$resourceGroupName = "vms-rg"
 $location = Read-Host -Prompt "Enter the location (i.e. uksouth, northeurope)"
 $vmName = Read-Host -Prompt "Enter the VM Name (i.e. aznevm1)"
 $dnsLabelPrefix = $vmName
