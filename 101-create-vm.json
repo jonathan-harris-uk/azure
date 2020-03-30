@@ -78,7 +78,7 @@
     "subnetName": "lan-snet",
     "publicIPAddressName": "[concat(parameters('vmName'), 'pip')]",
     "virtualNetworkName": "vnet1",
-    "subnetRef": "[resourceId(parameters('subscriptionId'), 'rg-networks', 'Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]"
+    "subnetRef": "[resourceId(parameters('subscriptionId'), 'networks-rg', 'Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]"
   },
   "resources": [
     {
