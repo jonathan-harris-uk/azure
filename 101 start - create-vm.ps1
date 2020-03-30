@@ -4,8 +4,8 @@ $resourceGroup = Get-AzResourceGroup networks-rg
 
 #Set Variables
 $subscriptionId = $subscriptions.id
-$resourceGroupName = "vms-rg"
 $location = $resourceGroup.location
+$resourceGroupName = "vms-rg"
 $vmName = Read-Host -Prompt "Enter the VM Name (i.e. aznevm1)"
 $dnsLabelPrefix = $vmName
 $vmSize = Read-Host -Prompt "Enter the VM Size (i.e. Standard_B2s, Standard_B4ms, Standard_B8ms)"
