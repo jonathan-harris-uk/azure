@@ -18,7 +18,7 @@ $osDiskSize = Read-Host -Prompt "Enter the OS disk size (i.e. 64, 128, 256, 512,
 New-AzResourceGroup -Name $resourceGroupName -Location "$location"
 New-AzResourceGroupDeployment `
     -ResourceGroupName $resourceGroupName `
-    -TemplateUri "https://raw.githubusercontent.com/jonathan-harris-uk/azure/vms/101-create-vm.json" `
+    -TemplateUri "https://raw.githubusercontent.com/jonathan-harris-uk/azure/wvd/101-create-wvd-vm.json" `
     -adminUsername $adminUsername `
     -adminPassword $adminPassword `
     -dnsLabelPrefix $dnsLabelPrefix `
