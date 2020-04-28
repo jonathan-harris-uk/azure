@@ -1,0 +1,9 @@
+﻿{
+    "listOfAllowedSKUs":  {
+      "value": [
+        "standard_b2s",
+        "standard_b2ms",
+        "standard_b4ms"
+      ]
+    }
+}

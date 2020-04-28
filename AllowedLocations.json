@@ -1,0 +1,10 @@
+﻿{
+    "listOfAllowedLocations":  {
+      "value": [
+        "ukwest",
+        "uksouth",
+        "westeurope",
+        "northeurope"
+      ]
+    }
+}
