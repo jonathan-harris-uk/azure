@@ -1,4 +1,4 @@
-$Subscription = Get-AzSubscription -SubscriptionName 'Azure subscription 1'
+$Subscription = Get-AzSubscription
 
 $Policy = Get-AzPolicyDefinition -BuiltIn | Where-Object {$_.Properties.DisplayName -eq 'Allowed locations'}
 New-AzPolicyAssignment -Name 'Restrict Location' -PolicyDefinition $Policy -Scope "/subscriptions/$($Subscription.Id)" -PolicyParameter .\AllowedLocations.json
