@@ -46,8 +46,9 @@
       "defaultValue": "Standard_B2s",
        "allowedValues": [
         "Standard_B2s",
-        "Standard_B4_ms",
-        "Standard_B8_ms",
+        "Standard_B2ms",
+        "Standard_B4ms",
+        "Standard_B8ms",
          "Standard_D2s_v3",
          "Standard_D4s_v3"
       ],
