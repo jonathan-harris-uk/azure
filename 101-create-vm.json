@@ -46,8 +46,8 @@
       "defaultValue": "Standard_B2s",
        "allowedValues": [
         "Standard_B2s",
-        "Standard_B2_ms",
-        "Standard_B4_ms"
+        "Standard_B2ms",
+        "Standard_B4ms"
       ],
       "metadata": {
         "description": "Size of the virtual machine."
