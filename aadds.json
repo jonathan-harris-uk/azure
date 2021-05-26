@@ -147,9 +147,7 @@
                                 "provisioningState": "Succeeded",
                                 "resourceGuid": "0dac58c5-c69f-4fff-a69b-db624a586034",
                                 "addressSpace": {
-                                    "addressPrefixes": [
-                                        "[parameters('vnetAddressPrefixes')]"
-                                    ]
+                                    "addressPrefixes": ["[parameters('vnetAddressPrefixes')]"]
                                 },
                                 "subnets": [
                                     {
