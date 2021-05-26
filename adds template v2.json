@@ -1,0 +1,199 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "domainName": {
+            "type": "string"
+        },
+        "location": {
+            "type": "string"
+        },
+        "vnetName": {
+            "type": "string"
+        },
+        "vnetAddressPrefixes": {
+            "type": "array"
+        },
+        "vnetResourceGroup": {
+            "type": "string"
+        },
+        "vnetLocation": {
+            "type": "string"
+        },
+        "subnetAddressPrefix": {
+            "type": "string"
+        }
+    },
+    "variables": {
+        "notificationSettings": {
+             "value": {
+                "notifyGlobalAdmins": "Enabled",
+                "notifyDcAdmins": "Enabled",
+                "additionalRecipients": []
+            }
+        },        
+        "sku": "Standard",
+        "domainConfigurationType": "FullySynced",
+        "filteredSync": "Disabled",
+        "tlsV1": "Enabled",
+        "ntlmV1": "Enabled",
+        "syncNtlmPasswords": "Enabled",
+        "syncOnPremPasswords": "Enabled",
+        "kerberosRc4Encryption": "Enabled",
+        "kerberosArmoring": "Disabled",
+        "subnetName": "aadds-snet",
+        "nsgName": "aadds-nsg"
+    }, 
+    "resources": [
+        {
+            "apiVersion": "2021-03-01",
+            "type": "Microsoft.AAD/DomainServices",
+            "name": "[parameters('domainName')]",
+            "location": "[parameters('location')]",
+            "dependsOn": [
+                "[concat('Microsoft.Resources/deployments/', parameters('vnetName'), '.', variables('subnetName'))]"
+            ],
+            "properties": {
+                "domainName": "[parameters('domainName')]",
+                "filteredSync": "[variables('filteredSync')]",
+                "domainConfigurationType": "[variables('domainConfigurationType')]",
+                "notificationSettings": "[variables('notificationSettings')]",
+                "replicaSets": [
+                    {
+                        "subnetId": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', parameters('vnetResourceGroup'), '/providers/Microsoft.Network/virtualNetworks/', parameters('vnetName'), '/subnets/', variables('subnetName'))]",
+                        "location": "[parameters('location')]"
+                    }
+                ],
+                "domainSecuritySettings": {
+                    "tlsV1": "[variables('tlsV1')]",
+                    "ntlmV1": "[variables('ntlmV1')]",
+                    "syncNtlmPasswords": "[variables('syncNtlmPasswords')]",
+                    "syncOnPremPasswords": "[variables('syncOnPremPasswords')]",
+                    "kerberosRc4Encryption": "[variables('kerberosRc4Encryption')]",
+                    "kerberosArmoring": "[variables('kerberosArmoring')]"
+                },
+                "sku": "[variables('sku')]"
+            }
+        },
+        {
+            "apiVersion": "2019-05-01",
+            "name": "[variables('nsgName')]",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "Incremental",
+                "template": {
+                    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                    "contentVersion": "1.0.0.0",
+                    "resources": [
+                        {
+                            "type": "Microsoft.Network/NetworkSecurityGroups",
+                            "name": "[variables('nsgName')]",
+                            "location": "[parameters('vnetLocation')]",
+                            "properties": {
+                                "securityRules": [
+                                    {
+                                        "name": "AllowPSRemoting",
+                                        "properties": {
+                                            "access": "Allow",
+                                            "priority": 301,
+                                            "direction": "Inbound",
+                                            "protocol": "Tcp",
+                                            "sourceAddressPrefix": "AzureActiveDirectoryDomainServices",
+                                            "sourcePortRange": "*",
+                                            "destinationAddressPrefix": "*",
+                                            "destinationPortRange": "5986"
+                                        }
+                                    },
+                                    {
+                                        "name": "AllowRD",
+                                        "properties": {
+                                            "access": "Allow",
+                                            "priority": 201,
+                                            "direction": "Inbound",
+                                            "protocol": "Tcp",
+                                            "sourceAddressPrefix": "CorpNetSaw",
+                                            "sourcePortRange": "*",
+                                            "destinationAddressPrefix": "*",
+                                            "destinationPortRange": "3389"
+                                        }
+                                    }
+                                ]
+                            },
+                            "apiVersion": "2019-09-01"
+                        }
+                    ]
+                },
+                "parameters": {}
+            }
+        },
+        {
+            "apiVersion": "2019-05-01",
+            "name": "[concat(parameters('vnetName'), '.', variables('subnetName'))]",
+            "type": "Microsoft.Resources/deployments",
+            "resourceGroup": "[parameters('vnetResourceGroup')]",
+            "properties": {
+                "mode": "Incremental",
+                "template": {
+                    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                    "contentVersion": "1.0.0.0",
+                    "resources": [
+                        {
+                            "type": "Microsoft.Network/virtualNetworks",
+                            "apiVersion": "2019-09-01",
+                            "name": "[parameters('vnetName')]",
+                            "location": "[parameters('vnetLocation')]",
+                            "dependsOn": [],
+                            "properties": {
+                                "provisioningState": "Succeeded",
+                                "resourceGuid": "0dac58c5-c69f-4fff-a69b-db624a586034",
+                                "addressSpace": {
+                                    "addressPrefixes": [
+                                        "[parameters('vnetAddressPrefixes')]"
+                                    ]
+                                },
+                                "subnets": [
+                                    {
+                                        "name": "[variables('subnetName')]",
+                                        "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnetName'), variables('subnetName'))]",
+                                        "etag": "W/\"e54dd563-7b8c-4432-a0b1-e58390f4c646\"",
+                                        "properties": {
+                                            "provisioningState": "Succeeded",
+                                            "addressPrefix": "[parameters('subnetAddressPrefix')]",
+                                            "delegations": [],
+                                            "privateEndpointNetworkPolicies": "Enabled",
+                                            "privateLinkServiceNetworkPolicies": "Enabled"
+                                        },
+                                        "type": "Microsoft.Network/virtualNetworks/subnets"
+                                    }
+                                ],
+                                "virtualNetworkPeerings": [],
+                                "enableDdosProtection": false
+                            },
+                            "resources": [
+                                {
+                                    "type": "subnets",
+                                    "apiVersion": "2019-09-01",
+                                    "name": "[variables('subnetName')]",
+                                    "dependsOn": [
+                                        "[concat('Microsoft.Network/virtualNetworks/', parameters('vnetName'))]"
+                                    ],
+                                    "properties": {
+                                        "addressPrefix": "[parameters('subnetAddressPrefix')]",
+                                        "networkSecurityGroup": {
+                                            "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/NetworkSecurityGroups/', variables('nsgName'))]"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "parameters": {}
+            },
+            "dependsOn": [
+                "[concat('Microsoft.Resources/deployments/', variables('nsgName'))]"
+            ]
+        }
+    ],
+    "outputs": {}
+}
